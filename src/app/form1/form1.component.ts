@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-form1',
@@ -18,15 +18,16 @@ export class Form1Component implements OnInit {
     };
   }
 
-  onSubmit(myform: NgForm) {
+  onSubmit(myform: NgForm, name: NgModel) {
     console.log('onSubmit', myform);
     console.log(myform.value);
+    console.log(name);
   }
 
 }
 
 
-export interface User {
+interface User {
   name: string;
   name2: string;
 }

@@ -1,18 +1,17 @@
-<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm,name)">
+  <h2>ngModelと参照変数を使う</h2>
+  <input name="name" type="text" [(ngModel)]="user.name" #name="ngModel" required>
+  <span *ngIf="name.invalid">エラーが発生</span>
+  <span *ngIf="name.dirty && name.hasError('required')">nameは必須</span>
+  <span *ngIf="name.errors?.required">nameは必須</span>
+  <div>name.pristine: {{name.pristine}}</div>
+  <div>name.dirty: {{name.dirty}}</div>
+  <div>name.touched: {{name.touched}}</div>
+  <div>name.untouched: {{name.untouched}}</div>
   <div>
-    <h2>ngModelと参照変数を使う</h2>
-    <input name="name" type="text" [(ngModel)]="user.name" #name="ngModel" required>
-    <span *ngIf="name.invalid">エラーが発生</span>
-    <span *ngIf="name.dirty && name.hasError('required')">nameは必須</span>
-    <span *ngIf="name.errors?.required">nameは必須</span>
-    <div>name.pristine: {{name.pristine}}</div>
-    <div>name.dirty: {{name.dirty}}</div>
-    <div>name.touched: {{name.touched}}</div>
-    <div>name.untouched: {{name.untouched}}</div>
-
+    <input type="submit" [disabled]="myForm.invalid">
+    <input type="reset" [disabled]="!myForm.dirty">
   </div>
-  <input type="submit" [disabled]="myForm.invalid">
-  <input type="reset" [disabled]="!myForm.dirty">
 </form>
 
 <pre>

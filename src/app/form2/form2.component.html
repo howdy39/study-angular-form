@@ -1,0 +1,19 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+  <h2>formGroup/formControlを使う</h2>
+  <input name="name" type="text" [formControl]="myForm.controls.name">
+  <span *ngIf="myForm.controls.name.invalid">エラーが発生</span>
+  <span *ngIf="myForm.controls.name.dirty && myForm.controls.name.hasError('required')">nameは必須</span>
+  <span *ngIf="myForm.controls.name.errors?.required">nameは必須</span>
+  <div>myForm.controls.name.pristine: {{myForm.controls.name.pristine}}</div>
+  <div>myForm.controls.name.dirty: {{myForm.controls.name.dirty}}</div>
+  <div>myForm.controls.name.touched: {{myForm.controls.name.touched}}</div>
+  <div>myForm.controls.name.untouched: {{myForm.controls.name.untouched}}</div>
+  <div>
+    <input type="submit" [disabled]="myForm.invalid">
+    <input type="reset" [disabled]="!myForm.dirty">
+  </div>
+</form>
+
+<pre>
+{{myForm.value | json}}
+</pre>
